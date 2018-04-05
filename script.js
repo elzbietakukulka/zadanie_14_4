@@ -20,20 +20,6 @@ var movies = [
 	}
 ];
 
-var Movie = React.createClass({
-	propTypes: {
-		movie: React.PropTypes.object.isRequired,
-	},
-	
-	render: function() {
-		return (
-			React.createElement('div', {},
-				React.createElement('h1', {}, 'Lista filmów'),
-				React.createElement('ul', {}, moviesElements)
-			)
-		)
-	},
-});
 
 var MovieTitle = React.createClass({
 	propTypes: {
@@ -67,6 +53,22 @@ var MoviePicture = React.createClass({
 			)
 		);
 	}
+});
+
+var Movie = React.createClass({
+	propTypes: {
+		movie: React.PropTypes.object.isRequired,
+	},
+	
+	render: function() {
+		return (
+			React.createElement('div', {},
+				React.createElement(MovieTitle, {title: this.props.movie.title}),
+				React.createElement(MovieDescription, {desc: this.props.movie.desc}),
+				React.createElement(MoviePicture, {picture: this.props.movie.picture})
+			)
+		)
+	},
 });
 
 var moviesElements = movies.map(function(movie) {
